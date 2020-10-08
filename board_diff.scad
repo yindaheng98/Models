@@ -27,6 +27,3 @@ module board_diff() {
     scale([0.5, 1, 1])translate([-50,0,-0.01])ports_diff();
     translate([0,0,-0.01])screw_diff();
 }
-
-color("silver")translate([0, 0, -1])cube([75, 120, 1]);
-board_diff();
