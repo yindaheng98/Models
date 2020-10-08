@@ -12,12 +12,12 @@ module simpleTank(inner_size, thickness, center=false){ //简单直角水槽
             cube([inner_size[0], inner_size[1], inner_size[2]+0.01]);
         }
     }
-    if (center) translate([-inner_size[0]/2-thickness, -inner_size[1]/2-thickness, 0])_tank();
-    else _tank();
+    if (center) translate([-inner_size[0]/2-thickness, -inner_size[1]/2-thickness, -thickness])_tank();
+    else translate([-thickness, -thickness, -thickness])_tank();
 }
 
 //内部尺寸、厚度、圆角半径
-module roundedTank(inner_size, thickness, radius, center=false){ //圆角圆边水槽
+module roundedTank(inner_size, thickness, radius, sidesonly=false, center=false){ //圆角圆边水槽
     if (!is_list(inner_size)) {
         inner_size=[inner_size,inner_size,inner_size];
     }
@@ -26,11 +26,11 @@ module roundedTank(inner_size, thickness, radius, center=false){ //圆角圆边�
             translate([inner_size[0]/2+thickness, inner_size[1]/2+thickness, (inner_size[2]+thickness)/2])
             roundedBox(
                 size=[inner_size[0]+thickness*2, inner_size[1]+thickness*2, inner_size[2]+thickness],
-                radius=radius, sidesonly=true);
+                radius=radius, sidesonly=sidesonly);
             translate([thickness, thickness, thickness+0.01])
             cube([inner_size[0], inner_size[1], inner_size[2]+0.01]);
         }
     }
     if (center) translate([-inner_size[0]/2-thickness, -inner_size[1]/2-thickness, 0])_tank();
-    else _tank();
+    else translate([-thickness, -thickness, -thickness])_tank();
 }
