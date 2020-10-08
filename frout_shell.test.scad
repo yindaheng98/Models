@@ -1,4 +1,4 @@
-include <frout_screen.scad>
+include <frout_shell.scad>
 translate([0, 15, 0])
 froutShellWithPaneForShow(
     screen_size=[25.6,14.4],
