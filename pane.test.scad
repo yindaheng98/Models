@@ -1,3 +1,4 @@
 include <pane.scad>
-translate([0, 200, 0])B173QTN014(true);
-translate([0, -200, 0])B173QTN014(false);
+B173QTN014(false);
+translate([0, 400, 0])B173QTN014(true, 0, "hypo");
+translate([0, 800, 0])B173QTN014(true, 0, "step", 2,1);

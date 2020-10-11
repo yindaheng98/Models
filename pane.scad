@@ -3,20 +3,40 @@ B173QTN014_active_area_outline_size=[398.10,230.45];//屏幕主要部分的外�
 B173QTN014_outline_size=[B173QTN014_active_area_outline_size[0],252.5];//最外圈尺寸
 B173QTN014_thickness=4.35;//屏幕厚度
 B173QTN014_active_area_outline_margin_bottom=13.4;//面板下方有多少空间
+B173QTN014_active_area_margin_bottom=B173QTN014_active_area_outline_size[1]-6.6-B173QTN014_active_area_size[1]+13.4;//显示区域下方有多少空间
 
-module B173QTN014(cutout=false, active_area_margin=0){
+module B173QTN014(cutout=false, active_area_margin=0, additional_cutout="none", additional_cutout_margin=0, additional_cutout_thickness=0){
     module main_part(){//屏幕主体
         size_bottom=B173QTN014_active_area_outline_margin_bottom;
         translate([0, size_bottom, 0])
         cube(concat(B173QTN014_active_area_outline_size,[B173QTN014_thickness]));
         translate([49.05+0.1, 0, 0])cube([300,size_bottom+0.1,B173QTN014_thickness]);
     }
-    module active_area(margin=0,thickness=1){//屏幕活动区域
+    module active_area(margin=0,thickness=1, additional_cutout="none"){//屏幕活动区域
         origin_size=B173QTN014_active_area_size;
         origin_loc=[8.01,B173QTN014_active_area_outline_margin_bottom+B173QTN014_active_area_outline_size[1]-6.6-B173QTN014_active_area_size[1]];
         size=[origin_size[0]+margin*2,origin_size[1]+margin*2];
         loc=[origin_loc[0]-margin,origin_loc[1]-margin];
         color("white")translate(concat(loc,[0]))cube(concat(size,[thickness]));
+
+        module step_cutout(margin, thickness){
+            translate(concat([for (i=loc)i-margin],[-thickness]))
+            cube(concat([for(i=size)i+margin*2],[thickness+0.1]));
+        }
+
+        module hypo_cutout(){
+            hull(){
+                translate(concat([for(i=loc)i+0.1],[0]))cube(size=concat([for(i=size)i-0.2],[0.1]));
+                translate(concat([for (i=loc)i-50],[-50]))cube(size=concat([for(i=size)i+100],[1]));
+            }
+        }
+        if(additional_cutout == "step"){
+            translate([0, 0, 50])color("white")
+            step_cutout(additional_cutout_margin, additional_cutout_thickness);
+        } else if(additional_cutout == "hypo"){
+            translate([0, 0, 50])color("white")
+            hypo_cutout();
+        }
     }
     module screw_cutouts(h=100) {//屏幕4个角上的螺丝固定孔
         module screw_cutout(h=100) {
@@ -62,12 +82,12 @@ module B173QTN014(cutout=false, active_area_margin=0){
             screw_cutouts();
         }
     }
-    module CUTOUT(active_area_margin){//生成差分用模型
+    module CUTOUT(active_area_margin, additional_cutout){//生成差分用模型
         cube(size=concat(B173QTN014_outline_size,[B173QTN014_thickness]));
         screw_cutouts();
         translate([0,0,-50])
-        active_area(margin=active_area_margin,thickness=100);
+        active_area(margin=active_area_margin,thickness=100,additional_cutout=additional_cutout);
     }
-    if(cutout)CUTOUT(active_area_margin);
+    if(cutout)CUTOUT(active_area_margin, additional_cutout);
     else _B173QTN014();
 }
