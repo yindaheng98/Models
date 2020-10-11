@@ -1,3 +1,5 @@
+include <NopSCADlib/vitamins/pcb.scad>
+
 B173QTN014_active_area_size=[382.08,214.92];//显示区域尺寸
 B173QTN014_active_area_outline_size=[398.10,230.45];//屏幕主要部分的外圈尺寸
 B173QTN014_outline_size=[B173QTN014_active_area_outline_size[0],252.5];//最外圈尺寸
@@ -5,7 +7,7 @@ B173QTN014_thickness=4.35;//屏幕厚度
 B173QTN014_active_area_outline_margin_bottom=13.4;//面板下方有多少空间
 B173QTN014_active_area_margin_bottom=B173QTN014_active_area_outline_size[1]-6.6-B173QTN014_active_area_size[1]+13.4;//显示区域下方有多少空间
 
-module B173QTN014(cutout=false, active_area_margin=0, additional_cutout="none", additional_cutout_margin=0, additional_cutout_thickness=0){
+module B173QTN014(cutout=false, screw_height=2, active_area_margin=0, additional_cutout="none", additional_cutout_margin=0, additional_cutout_thickness=0){
     module main_part(){//屏幕主体
         size_bottom=B173QTN014_active_area_outline_margin_bottom;
         translate([0, size_bottom, 0])
@@ -40,8 +42,12 @@ module B173QTN014(cutout=false, active_area_margin=0, additional_cutout="none", 
     }
     module screw_cutouts(h=100) {//屏幕4个角上的螺丝固定孔
         module screw_cutout(h=100) {
-            cylinder(r=1, h=h, center=true);
-            translate([8,0,0])cylinder(r=1, h=100, center=true);
+            module S(){
+                translate([0,0,-screw_height])rotate([0,180,0])screw(M2_cs_cap_screw, 50);
+                cylinder(r=1, h=h, center=true);
+            }
+            S();
+            translate([8,0,0])S();
         }
         diff=[344.5,239.11];
         loc=[22.815,B173QTN014_active_area_outline_margin_bottom-(diff[1]-5.505-B173QTN014_active_area_outline_size[1])];
