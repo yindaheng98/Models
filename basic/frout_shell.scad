@@ -16,6 +16,6 @@ module froutShell(shell_thickness, screen_size, board_size, back_angle, radius){
     difference(){
         roundedTank(inner_size, shell_thickness, radius, sidesonly=true, center=false);
         translate([screen_size[0]+shell_thickness+5, screen_size[1]+shell_thickness+5, inner_size[2]+0.01])
-        backCutout(board_size[2], screen_size[1]-board_size[1]+shell_thickness+5, back_angle, screen_size[0]+shell_thickness*2+10);
+        backCutout(board_size[2], screen_size[1]-board_size[1]+shell_thickness/tan(back_angle), back_angle, screen_size[0]+shell_thickness*2+10);
     }
 }
