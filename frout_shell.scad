@@ -18,6 +18,7 @@ module froutShell_cutout() {//从前面板中切除的部分
 }
 
 module B173QTN014_froutShell() { //正面面板
+    //translate([shell_thickness+reserved_space, shell_thickness+reserved_space, 0])B173QTN014();
     difference(){
         froutShell(
             shell_thickness=shell_thickness,

@@ -6,7 +6,7 @@ include <tank.scad>
 //screen_size:前面的屏幕尺寸
 //board_size:后面的电路板尺寸
 //back_angle:连接前面板和电路板空间的斜边角度
-module froutShell(shell_thickness, radius, screen_size, board_size, back_angle){
+module froutShell(shell_thickness, screen_size, board_size, back_angle, radius){
     inner_size=[screen_size[0],screen_size[1],screen_size[2]+board_size[2]];
 
     module backCutout(thickness, width, angle, cutout_width=100) {
