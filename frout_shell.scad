@@ -22,7 +22,7 @@ module froutShell_cutout() {//从前面板中切除的部分
         shell_thickness+board_size[0],
         board_thickness_max+screen_size[2]])
     rotate([180, 0, 0])
-    board_diff(screw_height=shell_thickness+0.05);
+    board(screw_height=shell_thickness+0.05);
 
     //TODO:切出按键孔洞
 
