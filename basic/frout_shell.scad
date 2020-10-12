@@ -11,7 +11,7 @@ module froutShell(shell_thickness, screen_size, board_size, back_angle, radius){
 
     module backCutout(thickness, width, angle, cutout_width=100) {
         rotate([270, 90, 90])linear_extrude(cutout_width)
-        polygon(points=[[0,0],[thickness,0],[thickness,width-thickness/sin(angle)],[0,width]]);
+        polygon(points=[[0,0],[thickness,0],[thickness,width-thickness/tan(angle)],[0,width]]);
     }
     difference(){
         roundedTank(inner_size, shell_thickness, radius, sidesonly=true, center=false);
