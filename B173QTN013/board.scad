@@ -18,7 +18,10 @@ module board_ports(){//接口孔洞
 module board_screws(screw_height=2){//螺丝孔洞
     module S(){
         translate([0,0,-screw_height-board_thickness])
-        rotate([180,0,0])screw(M2_cs_cap_screw, 5);
+        rotate([180,0,0]){
+            screw(M2_cs_cap_screw, 5);
+            translate([0, 0, -1])cylinder(r=1, h=2, center=true);
+        }
     }
     translate([3, 3, 0])S();
     translate([3, board_size[0]-3, 0])S();

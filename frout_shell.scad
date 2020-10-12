@@ -12,7 +12,7 @@ module B173QTN014_froutShell() { //正面面板
         translate([shell_thickness+reserved_space, shell_thickness+reserved_space, 0])
         B173QTN014(cutout=true, screw_height=shell_thickness+0.05, active_area_margin=2, additional_cutout="hypo");
         //切出电路板孔洞
-        #driverboard();
+        driverboard();
 
         //TODO:切出按键孔洞
         

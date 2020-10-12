@@ -14,14 +14,17 @@ module B173QTN014_backShell() {
         //TODO:切出按键孔洞
 
         screw_cutout();//切出螺丝孔洞
+        driverboard();//切出电路板螺丝孔洞
     }
+
     difference() {
+        translate([shell_thickness+reserved_space_backshell, shell_thickness+reserved_space_backshell, 0])
         backShell(
             shell_thickness=shell_thickness,
             screen_size=screen_size,
             board_size=[board_size[1],board_size[0]+2.5,board_thickness_max],
             back_angle=30);
-        translate([0,-shell_thickness])backShell_cutout();
+        backShell_cutout();
     }
 
 }

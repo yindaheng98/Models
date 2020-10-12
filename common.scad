@@ -20,9 +20,8 @@ module screw_cutout() {
         module Screw() {
             rotate([0, 270, 0]){
                 let($show_threads = true)
-                screw(type = M3_cs_cap_screw, length = 7, hob_point = 1, nylon = true);
-                translate([0, 0, 7-shell_thickness-0.1])
-                screw(type = M3_grub_screw, length = 7, hob_point = 1, nylon = true);
+                screw(type = M3_cs_cap_screw, length = 7);
+                translate([0, 0, -1])cylinder(r=1.5, h=2, center=true);
                 //translate([0,0,-shell_thickness*2])mirror([0,0,1])nut(M3_nut);
             }
         }
