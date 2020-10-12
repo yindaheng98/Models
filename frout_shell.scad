@@ -1,17 +1,4 @@
-include <B173QTN013/board.scad>
-include <B173QTN013/pane.scad>
-include <basic/frout_shell.scad>
-
-shell_thickness=2; //外壳厚度
-reserved_space=0.5;//预留空间
-screen_size=concat(
-    [ for (i = B173QTN014_outline_size) i+shell_thickness*2+reserved_space*2 ],
-    [B173QTN014_thickness+shell_thickness+0.2]
-); //屏幕整体大小//留点空间免得放不进去
-
-module screw_cutout() {
-    //TODO:切出螺丝孔洞
-}
+include <common.scad>
 
 module froutShell_cutout() {//从前面板中切除的部分
     //切出屏幕孔洞
@@ -30,17 +17,6 @@ module froutShell_cutout() {//从前面板中切除的部分
     screw_cutout();//切出螺丝孔洞
 }
 
-module backShell_cutout() {
-    //TODO:切出接口孔洞
-
-    //TODO:切出按键孔洞
-
-    
-    screw_cutout();//切出螺丝孔洞
-}
-
-radius=3;
-
 module B173QTN014_froutShell() { //正面面板
     difference(){
         froutShell(
@@ -51,10 +27,6 @@ module B173QTN014_froutShell() { //正面面板
             back_angle=45);
         froutShell_cutout();
     }
-}
-
-module B173QTN014_backShell() {
-    //TODO:背面面板
 }
 
 B173QTN014_froutShell();
