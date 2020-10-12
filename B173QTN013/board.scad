@@ -1,5 +1,5 @@
 include <NopSCADlib/vitamins/pcb.scad>
-include <interfaces/miniDP.scad>
+include <../interfaces/miniDP.scad>
 
 board_thickness_max=5.5;
 board_thickness=1;

@@ -1,5 +1,5 @@
-include <board_diff.scad>
-include <pane.scad>
+include <B173QTN013/board.scad>
+include <B173QTN013/pane.scad>
 include <basic/frout_shell.scad>
 
 shell_thickness=2; //外壳厚度
