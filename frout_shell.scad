@@ -19,13 +19,12 @@ module B173QTN014_froutShell() { //正面面板
         screw_cutout();//切出螺丝孔洞
     }
 
-    //translate([shell_thickness+reserved_space, shell_thickness+reserved_space, 0])B173QTN014();
     difference(){
         froutShell(
             shell_thickness=shell_thickness,
             radius=radius,
             screen_size=screen_size,
-            board_size=[board_size[1],board_size[0]+2.5,board_thickness_max],
+            board_size=[board_size[1],board_size[0]+2.5+3,board_thickness_max],
             back_angle=30);
         froutShell_cutout();
     }

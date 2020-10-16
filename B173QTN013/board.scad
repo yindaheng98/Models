@@ -29,10 +29,16 @@ module board_screws(screw_height=2){//螺丝孔洞
     translate([board_size[1]-3, 120-3, 0])S();
 }
 
-module board(screw_height=2) {//组合为电路板孔洞
+module board(screw_height=2, cutout=false) {//组合为电路板孔洞
     translate([0, 0, board_thickness]) {
-        scale([0.5, 1, 1])translate([-50,0,-0.01])board_ports();
+        if(cutout){
+            color("silver")translate([-board_size[1], -0.2, -board_thickness])
+            cube([board_size[1] * 2, board_size[0]+0.4, board_thickness_max+1]);
+        }else{
+            scale([0.5, 1, 1])translate([-50,0,-0.01])board_ports();
+            color("silver")translate([0, 0, -board_thickness])
+            cube([board_size[1], board_size[0], board_thickness]);
+        }
         translate([0,0,-0.01])board_screws(screw_height);
-        color("silver")translate([0, 0, -board_thickness])cube([board_size[1], board_size[0], board_thickness]);
     }
 }
