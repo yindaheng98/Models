@@ -6,13 +6,13 @@ board_thickness=1;
 board_size=[120,75];//驱动板尺寸
 
 module board_ports(){//接口孔洞
-    translate([50, 13, 2])cube([100,8,5],true);
+    translate([50, 13, 5/2-1])cube([100,8,5],true);
     translate([0, 25.5, 0])usb_uA(true);
     translate([0, 39.5, 0])usb_C(true);
     translate([0, 56.5, 0])hdmi(hdmi_mini,true);
     translate([0, 75.5, 0])hdmi(hdmi_mini,true);
-    translate([0, 93.5, -1])dp_mini(true);
-    translate([0, 108, -1])jack(true);
+    translate([0, 93.5, -board_thickness])dp_mini(true);
+    translate([0, 108, -board_thickness])jack(true);
 }
 
 module board_screws(screw_height=2){//螺丝孔洞
@@ -35,7 +35,7 @@ module board(screw_height=2, cutout=false) {//组合为电路板孔洞
             color("silver")translate([-board_size[1], -0.2, -board_thickness])
             cube([board_size[1] * 2, board_size[0]+0.4, board_thickness_max+1]);
         }else{
-            scale([0.5, 1, 1])translate([-50,0,-0.01])board_ports();
+            scale([0.5, 1, 1])rotate([0,0,180])translate([-50,-board_size[0],-0.01])board_ports();
             color("silver")translate([0, 0, -board_thickness])
             cube([board_size[1], board_size[0], board_thickness]);
         }
