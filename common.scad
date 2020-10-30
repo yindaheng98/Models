@@ -1,5 +1,6 @@
-include <B173QTN013/board.scad>
-include <B173QTN013/pane.scad>
+include <B173QTN01/board.scad>
+include <B173QTN01/pane.scad>
+include <B173QTN01/keyboard.scad>
 include <basic/frout_shell.scad>
 include <basic/back_shell.scad>
 include <NopSCADlib/core.scad>
@@ -38,13 +39,12 @@ module screw_cutout() {
 
 module driverboard(cutout = false) {
             //切出电路板孔洞
-        translate([0,
-            shell_thickness+board_size[0]+3.2,
-            board_thickness_max+B173QTN014_thickness+reserved_driverboard_height+0.01])
-        rotate([180, 0, 0])
-        board(screw_height=shell_thickness+0.05, cutout = cutout);
-}
+        loc_z = board_thickness_max+B173QTN014_thickness+reserved_driverboard_height+0.01;
+        loc_y = shell_thickness+3.2;
+        screw_height = shell_thickness+0.05;
+        translate([0, board_size[0]+loc_y, loc_z])rotate([180, 0, 0])
+        board(screw_height = screw_height, cutout = cutout);
 
-module keyboard() {
-
+        translate([screen_size[0]-keyboard_size[1],loc_y,loc_z])
+        rotate([180, 0, 90])keyboard(screw_height = screw_height, cutout = cutout);
 }

@@ -21,7 +21,7 @@ module keys() { //按键加LED排布
     translate([led_loc,0,0])led();
 }
 
-module keyboard(cutout = false) { //按键板
+module keyboard(screw_height = 0, cutout = false) { //按键板
     module _keyboard(cutout = false) { //调整位置前的按键板
         if (cutout) {
             translate([0, 0, keyboard_size[2]-keyboard_thickness_max])
