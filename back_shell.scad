@@ -14,7 +14,7 @@ module B173QTN014_backShell() {
         //TODO:切出按键孔洞
 
         screw_cutout();//切出螺丝孔洞
-        #driverboard(cutout = true);//切出电路板螺丝孔洞
+        driverboard(cutout = true);//切出电路板螺丝孔洞
     }
 
     difference() {
