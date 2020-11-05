@@ -2,7 +2,7 @@ include <NopSCADlib/vitamins/pcb.scad>
 
 module dp_mini(cutout = false) { //! Draw mini DisplayPort
     l = 6;
-    iw1 = 7.5;
+    iw1 = 8.0;
     iw2 = 5.6;
     ih2 = 4.6;
     ih1 = ih2-(iw1-iw2)/2;

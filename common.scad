@@ -46,8 +46,8 @@ module driverboard(cutout = false) {
         translate([0, board_size[0]+loc_y, loc_z])rotate([180, 0, 0])
         board(screw_height = screw_height, cutout = cutout);
 
-        translate([screen_size[0]-keyboard_size[1],loc_y,loc_z])
+        translate([screen_size[0]-keyboard_size[1]-key_length,loc_y,loc_z])
         rotate([180, 0, 90])keyboard(screw_height = screw_height, cutout = cutout);
     }
-    translate([0,0,-0.02])_driverboard();
+    #translate([0,0,-0.02])_driverboard();
 }

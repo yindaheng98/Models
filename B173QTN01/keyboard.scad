@@ -1,16 +1,20 @@
 include <NopSCADlib/vitamins/pcb.scad>
 keyboard_size = [70, 15, 1];
-key_height = 2;
+key_height = 4;
 keyboard_thickness_max = keyboard_size[2] + key_height + 0.1;
+key_length = 1.2;
 
 module keys() { //按键加LED排布
     module key() {
-        translate([0, -1, 1])cube(size=[4,2,key_height], center=true);
-        translate([0, 4.9, 1])rotate([90, 0, 0])
-        cylinder(r=1.5, h=10, center=true);
+        translate([0, -1, 0])cube(size=[4,2,key_height], center=true);
+        translate([0, 4.9, 1])rotate([90, 0, 0]){
+            cylinder(r=1.5, h=10, center=true);
+            translate([0, 0, 4 - key_length])
+            cylinder(r=4, h=1);
+        }
     }
     module led() {
-        translate([0, -1, 1])cube(size=[4,2,key_height], center=true);
+        translate([0, -1, 0])cube(size=[4,2,key_height], center=true);
         translate([0, 4, 1])rotate([90, 0, 0])
         cylinder(r=1, h=10, center=true);
     }
