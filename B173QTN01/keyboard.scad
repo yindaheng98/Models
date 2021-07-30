@@ -29,7 +29,7 @@ module keys() { //按键加LED排布
 module keyboard(screw_height = 0, cutout = false) { //按键板
     module screws() {
         module S(){
-                rotate([0,180,0])screw(M2_cs_cap_screw, 50);
+                rotate([0,180,0])screw(M2_cs_cap_screw, 5);
                 cylinder(r=1, h=10, center=true);
             }
         loc_x = [2,keyboard_size[0]-2];
