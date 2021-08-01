@@ -16,11 +16,11 @@ screen_size=concat(
     [B173QTN014_thickness+shell_thickness+0.2]
 ); //屏幕整体大小//留点空间免得放不进去
 
-module screw_cutout() {
+module screw_cutout(show_threads) {
     module Screws() {
         module Screw() {
             rotate([0, 270, 0]){
-                let($show_threads = true)
+                let($show_threads = show_threads)
                 screw(type = M3_cs_cap_screw, length = 7);
                 translate([0, 0, -1])cylinder(r=1.5, h=2, center=true);
                 //translate([0,0,-shell_thickness*2])mirror([0,0,1])nut(M3_nut);

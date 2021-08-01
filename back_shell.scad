@@ -1,7 +1,7 @@
 include <common.scad>
 
 
-module B173QTN014_backShell() {
+module B173QTN014_backShell(show_threads = true) {
     reserved_space=reserved_space_screen;
     screen_size=concat(
         [ for (i = B173QTN014_outline_size) i+reserved_space*2 ],
@@ -13,7 +13,7 @@ module B173QTN014_backShell() {
 
         //TODO:切出按键孔洞
 
-        screw_cutout();//切出螺丝孔洞
+        screw_cutout(show_threads);//切出螺丝孔洞
         driverboard(cutout = true);//切出电路板螺丝孔洞
     }
 

@@ -1,6 +1,6 @@
 include <common.scad>
 
-module B173QTN014_froutShell() { //正面面板
+module B173QTN014_froutShell(show_threads = true) { //正面面板
     reserved_space=reserved_space_screen+reserved_space_backshell;//为后面板留点空间
     screen_size=concat(
         [ for (i = B173QTN014_outline_size) i+shell_thickness*2+reserved_space*2 ],
@@ -16,7 +16,7 @@ module B173QTN014_froutShell() { //正面面板
 
         //TODO:切出按键孔洞
         
-        screw_cutout();//切出螺丝孔洞
+        screw_cutout(show_threads);//切出螺丝孔洞
     }
 
     difference(){
