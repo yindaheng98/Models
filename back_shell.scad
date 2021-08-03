@@ -1,7 +1,7 @@
 include <common.scad>
 
 
-module B173QTN014_backShell(show_threads = true) {
+module B173QTN014_backShell(show_threads = true, bending = false) {
     reserved_space=reserved_space_screen;
     screen_size=concat(
         [ for (i = B173QTN014_outline_size) i+reserved_space*2 ],
@@ -23,7 +23,8 @@ module B173QTN014_backShell(show_threads = true) {
             shell_thickness=shell_thickness,
             screen_size=screen_size,
             board_size=[board_size[1],board_size[0]+2.5+10,board_thickness_max],
-            back_angle=30);
+            back_angle=30,
+            bending=bending);
         backShell_cutout();
     }
 

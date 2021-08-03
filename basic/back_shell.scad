@@ -1,4 +1,4 @@
-module backShell(shell_thickness, screen_size, board_size, back_angle, bending = true) {
+module backShell(shell_thickness, screen_size, board_size, back_angle, bending = false) {
     module back_mod(bottom_size, top_size, angle, angle_cutout = false) {
         cube(bottom_size);
         translate([0,0,bottom_size[2]-0.1])cube([bottom_size[0],top_size[1],top_size[2]+0.1]);

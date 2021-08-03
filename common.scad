@@ -26,14 +26,16 @@ module screw_cutout(show_threads) {
                 //translate([0,0,-shell_thickness*2])mirror([0,0,1])nut(M3_nut);
             }
         }
-        translate([9+shell_thickness, -2.1, 3+2])rotate([0,0,90])Screw();//最底下的螺孔
 
         screw_from_border=shell_thickness+2;
         screw_loc_h=(screen_size[2]+board_thickness_max)/2;
         translate([0, board_size[0]+shell_thickness+7, screw_loc_h])Screw();//中间的螺孔
         screw_top_loc_h=(screen_size[2]+shell_thickness)/2-shell_thickness;
-        translate([0, screen_size[1]-screw_from_border, screw_top_loc_h])Screw();//最顶上的螺孔
-        translate([0, screen_size[1]-screw_from_border-100, screw_top_loc_h])Screw();//靠中间的螺孔
+        translate([0, screen_size[1]-screw_from_border, screw_top_loc_h])Screw();//侧面靠上面的螺孔
+        translate([0, screen_size[1]-screw_from_border-100, screw_top_loc_h])Screw();//侧面靠中间的螺孔
+        translate([9+shell_thickness, -2.1, 3+2])rotate([0,0,90])Screw();//最底下靠两边的螺孔
+        translate([screen_size[0]/3, -2.1, 3+2])rotate([0,0,90])Screw();//最底下靠中间的螺孔
+        translate([screen_size[0]/3, screen_size[1]+shell_thickness+0.01, screw_top_loc_h])rotate([0,0,270])Screw();//最顶上的螺孔
     }
     translate([-shell_thickness-0.05, 0, 0])Screws();
     translate([screen_size[0]+shell_thickness+0.1,0,0])mirror([1,0,0])Screws();
