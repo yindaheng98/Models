@@ -34,10 +34,12 @@ module board(screw_height=2, cutout=false) {//组合为电路板孔洞
         if(cutout){
             color("silver")translate([-board_size[1], -0.2, -board_thickness])
             cube([board_size[1] * 2, board_size[0]+0.4, board_thickness_max+1]);
-        }else{
-            scale([0.5, 1, 1])rotate([0,0,180])translate([-50,-board_size[0],-0.01])board_ports();
-            color("silver")translate([0, 0, -board_thickness])
-            cube([board_size[1], board_size[0], board_thickness]);
+        }else {
+            translate([0, 0, 0.3]) {
+                scale([0.5, 1, 1])rotate([0,0,180])translate([-50,-board_size[0],-0.01])board_ports();
+                color("silver")translate([0, 0, -board_thickness])
+                cube([board_size[1], board_size[0], board_thickness]);
+            }
         }
         translate([0,0,-0.01])board_screws(screw_height);
     }
