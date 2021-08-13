@@ -10,7 +10,7 @@ module keys() { //按键加LED排布
         translate([0, 4.9, 1])rotate([90, 0, 0]){
             cylinder(r=1.5, h=10, center=true);
             translate([0, 0, 4 - key_length])
-            cylinder(r=4, h=1);
+            cylinder(r=3.1, h=1);
         }
     }
     module led() {
